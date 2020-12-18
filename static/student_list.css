@@ -1,4 +1,3 @@
-
 .col-stu_name, .col-stu_no, .col-gender, .col-enrolled {
     min-width: 4em;
     width: 8em;
@@ -32,9 +31,6 @@ td.ctrlbar .btn {
 }
 
 .dialog-background {
-    /* position: absolute;
-    width: 100%;
-    height: 100%; */
     position: fixed;
     top: 0;
     bottom: 0;
@@ -134,9 +130,6 @@ td.ctrlbar .btn {
     margin-right: 1em;
 }
 
-/* .dialog-background.comfirmation-dialog {
-    visibility: visible;
-} */
 
 .comfirmation-dialog > .dialog {
     min-width: 25em;

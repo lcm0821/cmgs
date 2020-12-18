@@ -10,6 +10,7 @@ import serv.student_rest
 import serv.course_views
 import serv.course_rest
 import serv.selection_views
+import serv.search_views
 
 import serv.grade_actions
 import serv.selection_actions
