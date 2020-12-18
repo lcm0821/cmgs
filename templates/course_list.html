@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+
+{% block styles %}
+    <link href="/course_list.css" rel="stylesheet" />
+{% endblock %}
+
+
+{% block page_content %}
+<div class="paper">
+    <div class="paper-head">
+        <div id="new-btn" class="btn">新建教学计划</div>
+    </div>
+    <hr />
+    <div class="paper-body">
+        <table id="course-table" class="table">
+            <thead>
+                <tr>
+                    <th class="col-cou_name">课程</th>
+                    <th class="col-place">地点</th>
+                    <th class="col-week">星期</th>
+                    <th class="col-class">节次</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <div class="course-editor dialog-background">
+        <form class="dialog">
+            <div class="dialog-head"></div>
+            <div class="dialog-body">
+                <!--<input type="hidden" name="cou_no" />-->
+                <label>课程: </label>
+                <input type="text" name="cou_name" />
+                <label>地点: </label>
+                <input type="text" name="place" />
+                <label>星期: </label>
+                <input type="text" name="week" />
+                <label>节次: </label>
+                <input type="text" name="class" />
+            </div>
+            <div class="dialog-footer">
+                <a id="save-btn" class="btn">保存</a>
+                <a id="close-btn" class="btn">关闭</a>
+            </div>
+        </form>
+    </div>
+    <div class="comfirmation-dialog dialog-background">
+        <form class="dialog">
+            <div class="dialog-head"></div>
+            <div class="dialog-body">
+                <div id="message"></div>
+            </div>
+            <div class="dialog-footer">
+                <a id="ok-btn" class="btn">确定</a>
+                <a id="cancel-btn" class="btn">放弃</a>
+            </div>
+        </form>
+    </div>
+    <!--<form class="course-form" action="/action/course/add" method="post">
+        <label>地点：</label>
+        <select name="cour_sn">
+            <option value="">--选择--</option>
+            {% for cour in courses %}
+            <option value="{{cour.cour_sn}}">
+                {{cour.cour_place}}({{cour.cour_name}})
+            </option>
+            {% endfor %}
+        </select>
+
+        <label>课程：</label>
+        <select name="cou_sn">
+            <option value="">--选择--</option>
+            {% for item in courses %}
+            <option value="{{item.cou_sn}}">
+                {{item.cou_name}}({{item.cou_sn}})
+            </option>
+            {% endfor %}
+        </select>
+
+        <label>时间：</label>
+        <input type="text" name="time" />
+
+        <input type="submit" value="添加时间" />
+    </form>
+    <hr />
+    <table>
+        <tr>
+            <th>地点</th>
+            <th>课程</th>
+            <th>时间</th>
+            <th>操作</th>
+        </tr>
+        {% for item in items %}
+        <tr>
+            <td>{{ item.cou_place }}</td>
+            <td>{{ item.cou_name }}</td>
+            <td>{{ item.cou_time }}</td>
+            <td>
+                <div class="ctrlbar">
+                    <div class="btn">
+                        <a href="/grade/edit/{{item.stu_sn}}/{{item.cou_sn}}">
+                            修改
+                        </a>
+                    </div>
+                    <div class="btn">
+                        <a href="/grade/delete/{{item.stu_sn}}/{{item.cou_sn}}">
+                            删除
+                        </a>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>-->
+</div>
+<script src="/course.js"></script>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+<!--  -->
+{% block styles %} {% endblock %}
+
+<!--  -->
+{% block page_content %}
+<div class="paper">
+    <form action="/action/selection/edit/{{stu_sn}}" method="post">
+        <input type="submit" value="修改" />
+    </form>
+    <hr />
+    <a href="/selection"> 回到选课列表 </a>
+</div>
+{% endblock %}
