@@ -11,18 +11,33 @@ async def view_list_selection(request):
         students = list(db)
 
         db.execute("""
-        SELECT sn AS cou_sn, name as cou_name,term,place FROM course ORDER BY course
+        SELECT sn AS cou_sn, name as cou_name,term,place FROM course ORDER BY cou_sn
         """)
         courses = list(db)
+
+        db.execute("""
+               SELECT DISTINCT term FROM course
+                """)
         terms = list(db)
+        db.execute("""
+               SELECT DISTINCT place FROM course
+                """)
         places = list(db)
 
+        db.execute("""
+                SELECT student.name AS stu_name, term,cou_sn as course,place FROM course_selection,student
+                where student.sn = course_selection.stu_sn
+                ORDER BY cou_sn;
+                """)
+        items = list(db)
+    # stu_sn, cou_sn, term, place
 
     return render_html(request, 'selection_list.html',
                        students=students,
                        courses=courses,
                        terms=terms,
-                       places=places,)
+                       places=places,
+                       items=items)
 
 
 @web_routes.get('/selection/edit/{stu_sn}/{term}')

@@ -2,6 +2,8 @@ from aiohttp import web
 import psycopg2.errors
 from urllib.parse import urlencode
 
+
+
 from .config import db_block, web_routes
 
 @web_routes.post('/action/selection/add')
@@ -11,15 +13,15 @@ async def action_selection_add(request):
     cou_sn = params.get("cou_sn")
     term = params.get("term")
     place = params.get("place")
-
+    print(params)
     if stu_sn is None or cou_sn is None or term is None or place is None:
         return web.HTTPBadRequest(text="stu_sn, cou_sn, term, place must be required")
 
     try:
         stu_sn = int(stu_sn)
         cou_sn = int(cou_sn)
-        term =  TEXT(term)
-        place = TEXT(place)
+        term = TEXT(term)
+        term = TEXT(term)
     except ValueError:
         return web.HTTPBadRequest(text="invalid value")
 
@@ -54,8 +56,8 @@ async def edit_selection_action(request):
     try:
         stu_sn = int(stu_sn)
         cou_sn = int(cou_sn)
-        term = text(term)
-        place = text(place)
+        term = str(term)
+        place = str(place)
     except ValueError:
         return web.HTTPBadRequest(text="invalid value")
 

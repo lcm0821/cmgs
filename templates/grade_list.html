@@ -1,7 +1,6 @@
 {% extends "base.html" %} {% block styles %}
 <link href="/grade_list.css" rel="stylesheet" />
-{% endblock %}
-{% block page_content %}
+{% endblock %} {% block page_content %}
 <div class="paper">
     <form class="grade-form" action="/action/grade/add" method="post">
         <label>学生：</label>
@@ -28,6 +27,36 @@
         <input type="text" name="grade" />
 
         <input type="submit" value="添加成绩" />
+    </form>
+    <hr />
+    <form class="grade-form" action="/action/grade/select" method="post">
+        <label>查询学生成绩</label>
+        <input type="text" name="select_name">
+        <input type="submit" value="查询">
+    </form>
+    <hr />
+    <form class="grade-form" action="/action/grade/select_grade" method="post">
+        <label>查询课程成绩：</label>
+        <label>课程：</label>
+        <select name="cou_sn">
+            <option value="">--选择--</option>
+            {% for item in courses %}
+            <option value="{{item.cou_sn}}">
+                {{item.cou_name}}({{item.cou_sn}})
+            </option>
+            {% endfor %}
+        </select>
+        <label>学期：</label>
+        <select name="term">
+            <option value="">--选择--</option>
+            {% for item in terms %}
+            <option value="{{item.term}}">
+                {{item.term}}
+            </option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="查询">
+
     </form>
     <hr />
     <table class="table">

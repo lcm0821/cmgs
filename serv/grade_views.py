@@ -4,6 +4,7 @@ from .config import db_block, web_routes, render_html
 
 @web_routes.get("/grade")
 async def view_list_grades(request):
+    print("grade_view")
     with db_block() as db:
         db.execute("""
         SELECT sn AS stu_sn, name as stu_name FROM student ORDER BY name
@@ -14,7 +15,10 @@ async def view_list_grades(request):
         SELECT sn AS cou_sn, name as cou_name FROM course ORDER BY name
         """)
         courses = list(db)
-
+        db.execute("""
+                SELECT DISTINCT term FROM course_selection ORDER BY term
+                """)
+        terms = list(db)
         db.execute("""
         SELECT g.stu_sn, g.cou_sn, 
             s.name as stu_name, 
@@ -31,11 +35,13 @@ async def view_list_grades(request):
     return render_html(request, 'grade_list.html',
                        students=students,
                        courses=courses,
+                       terms=terms,
                        items=items)
 
 
 @web_routes.get('/grade/edit/{stu_sn}/{cou_sn}')
 def view_grade_editor(request):
+    print("edit_view")
     stu_sn = request.match_info.get("stu_sn")
     cou_sn = request.match_info.get("cou_sn")
     if stu_sn is None or cou_sn is None:
@@ -60,6 +66,7 @@ def view_grade_editor(request):
 
 @web_routes.get("/grade/delete/{stu_sn}/{cou_sn}")
 def grade_deletion_dialog(request):
+    print("deletion_view")
     stu_sn = request.match_info.get("stu_sn")
     cou_sn = request.match_info.get("cou_sn")
     if stu_sn is None or cou_sn is None:
